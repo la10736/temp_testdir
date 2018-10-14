@@ -10,6 +10,6 @@ if delete it after use or not to debugging purpose.
 repository = "https://github.com/la10736/wasm-invaders"
 license = "MIT/Apache-2.0"
 keywords = ["test", "temp"]
-categories = ["test"]
+categories = ["development-tools::testing"]
 
 [dependencies]
