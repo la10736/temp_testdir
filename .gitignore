@@ -1,3 +1,6 @@
-
+/.idea
 /target
 **/*.rs.bk
+this_test_root
+temp_testdir.iml
+Cargo.lock

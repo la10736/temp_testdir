@@ -1,6 +1,15 @@
 [package]
 name = "temp_testdir"
-version = "0.1.0"
-authors = ["michele <michele.damico@gmail.com>"]
+version = "0.2.0"
+authors = ["Michele d'Amico <michele.damico@gmail.com>"]
+homepage = "https://github.com/la10736/temp_testdir"
+description = """
+Little crate to use temp directory in crate. You can chose
+if delete it after use or not to debugging purpose.
+"""
+repository = "https://github.com/la10736/wasm-invaders"
+license = "MIT/Apache-2.0"
+keywords = ["test", "temp"]
+categories = ["test"]
 
 [dependencies]
