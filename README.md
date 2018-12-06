@@ -10,13 +10,13 @@ temp_testdir = "0.2"
 
 ## How to use
 
-```
+```rust
 #[test]
 fn should_delete_temp_dir() {
     let temp = TempDir::default();
     // You can use `temp` as a `Path`
 
-    let file_path = PathBuf::from(temp.as_ref());
+    let mut file_path = PathBuf::from(temp.as_ref());
     file_path.push("hello.txt");
 
     let mut f = File::create(file_path.clone()).unwrap();
@@ -31,7 +31,7 @@ fn should_delete_temp_dir() {
 
 If you need to not delete the dir when test is done you can use
 
-```
+```rust
 let temp = TempDir::default().permanent();
 ```
 
