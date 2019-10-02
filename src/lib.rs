@@ -47,7 +47,9 @@ impl TempDir {
     /// New Temp dir.
     pub fn new<P: AsRef<Path>>(path: P, destroy: bool) -> Self {
         let mut path = PathBuf::from(path.as_ref());
-        Self::create_root(&path);
+        if let Some(parent) = path.parent() {
+            Self::create_root(&parent);
+        }
         while std::fs::create_dir(&path).is_err() {
             let val = {
                 path.extension().unwrap_or(OsStr::new(""))
