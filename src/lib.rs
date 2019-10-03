@@ -12,9 +12,7 @@ pub struct TempDir {
 
 impl Default for TempDir {
     fn default() -> Self {
-        let mut path = root();
-        path.push(root_name());
-        Self::new(path, true)
+        Self::new(Self::default_path(), true)
     }
 }
 
@@ -62,9 +60,15 @@ impl TempDir {
     }
 
     fn create_root(path: &Path) {
-        if let Some(_parent) = path.parent() {
-            std::fs::create_dir_all(&path).expect("Should create the parent dir");
+        if let Some(parent) = path.parent() {
+            std::fs::create_dir_all(&parent).expect("Should create the parent dir");
         }
+    }
+
+    fn default_path() -> PathBuf {
+        let mut path = root();
+        path.push(root_name());
+        path
     }
 }
 
@@ -105,11 +109,10 @@ mod test {
 
     #[test]
     fn default_tempdir_should_destroy_directory_after_go_out_of_scope() {
-        let path;
-        {
+        let path= {
             let temp = TempDir::default();
-            path = temp.as_ref().to_owned()
-        }
+            temp.as_ref().to_owned()
+        };
 
         assert!(!path.exists())
     }
@@ -184,5 +187,13 @@ mod test {
 
         assert_eq!(first.into_string().unwrap(), new_root);
         rm(new_root);
+    }
+
+    #[test]
+    fn should_not_leave_a_dangling_empty_directory() {
+        let root = "__should_be_destroy__";
+        TempDir::new(root, true);
+
+        assert!(!Path::new(root).exists())
     }
 }

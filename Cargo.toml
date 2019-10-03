@@ -1,6 +1,6 @@
 [package]
 name = "temp_testdir"
-version = "0.2.2"
+version = "0.2.3"
 authors = ["Michele d'Amico <michele.damico@gmail.com>"]
 homepage = "https://github.com/la10736/temp_testdir"
 description = """
